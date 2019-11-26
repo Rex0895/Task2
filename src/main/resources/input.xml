@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shapes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="input.xsd">
+    <Point id="1">
+        <x>2</x>
+        <y>2</y>
+    </Point>
+    <Square>
+        <x>2</x>
+        <y>2</y>
+        <length>3</length>
+    </Square>
+    <Rectangle>
+        <x>2</x>
+        <y>2</y>
+        <weight>3</weight>
+        <height>3</height>
+        <Point id="2">
+            <x>3</x>
+            <y>4</y>
+        </Point>
+    </Rectangle>
+    <Rectangle>
+        <x>2</x>
+        <y>2</y>
+        <weight>3</weight>
+        <height>3</height>
+        <Point id="2">
+            <x>3</x>
+            <y>4</y>
+        </Point>
+        <Square>
+            <x>1</x>
+            <y>1</y>
+            <length>5</length>
+        </Square>
+    </Rectangle>
+
+
+</Shapes>

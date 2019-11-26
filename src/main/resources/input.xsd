@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Shapes">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Point" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:integer" name="x"/>
+                            <xs:element type="xs:integer" name="y"/>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="id"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Square" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:integer" name="x"/>
+                            <xs:element type="xs:integer" name="y"/>
+                            <xs:element type="xs:integer" name="length"/>
+                            <!--1 уровень-->
+                            <xs:element name="Point" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:integer" name="x"/>
+                                        <xs:element type="xs:integer" name="y"/>
+                                    </xs:sequence>
+                                    <xs:attribute type="xs:string" name="id"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <!--1 уровень-->
+                            <xs:element name="Square" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:integer" name="x"/>
+                                        <xs:element type="xs:integer" name="y"/>
+                                        <xs:element type="xs:integer" name="length"/>
+                                        <!--2 уровень-->
+                                        <xs:element name="Point" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:integer" name="x"/>
+                                                    <xs:element type="xs:integer" name="y"/>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="id"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <!--2 уровень-->
+                                        <xs:element name="Square" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:integer" name="x"/>
+                                                    <xs:element type="xs:integer" name="y"/>
+                                                    <xs:element type="xs:integer" name="length"/>
+                                                    <!--3 уровень-->
+                                                    <xs:element name="Point" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:integer" name="x"/>
+                                                                <xs:element type="xs:integer" name="y"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="id"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <!--3 уровень-->
+                                                    <xs:element name="Square" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:integer" name="x"/>
+                                                                <xs:element type="xs:integer" name="y"/>
+                                                                <xs:element type="xs:integer" name="length"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="id"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <!--3 уровень-->
+                                                    <xs:element name="Rectangle"  minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:integer" name="x"/>
+                                                                <xs:element type="xs:integer" name="y"/>
+                                                                <xs:element type="xs:integer" name="weight"/>
+                                                                <xs:element type="xs:integer" name="height"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="id"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="id"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <!--2 уровень-->
+                                        <xs:element name="Rectangle"  minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:integer" name="x"/>
+                                                    <xs:element type="xs:integer" name="y"/>
+                                                    <xs:element type="xs:integer" name="weight"/>
+                                                    <xs:element type="xs:integer" name="height"/>
+                                                    <!--3 уровень-->
+                                                    <xs:element name="Point" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:integer" name="x"/>
+                                                                <xs:element type="xs:integer" name="y"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="id"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <!--3 уровень-->
+                                                    <xs:element name="Square" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:integer" name="x"/>
+                                                                <xs:element type="xs:integer" name="y"/>
+                                                                <xs:element type="xs:integer" name="length"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="id"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <!--3 уровень-->
+                                                    <xs:element name="Rectangle"  minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:integer" name="x"/>
+                                                                <xs:element type="xs:integer" name="y"/>
+                                                                <xs:element type="xs:integer" name="weight"/>
+                                                                <xs:element type="xs:integer" name="height"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="id"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="id"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute type="xs:string" name="id"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <!--1 уровень-->
+                            <xs:element name="Rectangle"  minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:integer" name="x"/>
+                                        <xs:element type="xs:integer" name="y"/>
+                                        <xs:element type="xs:integer" name="weight"/>
+                                        <xs:element type="xs:integer" name="height"/>
+                                        <!--2 уровень-->
+                                        <xs:element name="Point" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:integer" name="x"/>
+                                                    <xs:element type="xs:integer" name="y"/>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="id"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <!--2 уровень-->
+                                        <xs:element name="Square" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:integer" name="x"/>
+                                                    <xs:element type="xs:integer" name="y"/>
+                                                    <xs:element type="xs:integer" name="length"/>
+                                                    <!--3 уровень-->
+                                                    <xs:element name="Point" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:integer" name="x"/>
+                                                                <xs:element type="xs:integer" name="y"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="id"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <!--3 уровень-->
+                                                    <xs:element name="Square" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:integer" name="x"/>
+                                                                <xs:element type="xs:integer" name="y"/>
+                                                                <xs:element type="xs:integer" name="length"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="id"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <!--3 уровень-->
+                                                    <xs:element name="Rectangle"  minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:integer" name="x"/>
+                                                                <xs:element type="xs:integer" name="y"/>
+                                                                <xs:element type="xs:integer" name="weight"/>
+                                                                <xs:element type="xs:integer" name="height"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="id"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="id"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <!--2 уровень-->
+                                        <xs:element name="Rectangle"  minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:integer" name="x"/>
+                                                    <xs:element type="xs:integer" name="y"/>
+                                                    <xs:element type="xs:integer" name="weight"/>
+                                                    <xs:element type="xs:integer" name="height"/>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="id"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute type="xs:string" name="id"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="id"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Rectangle"  minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:integer" name="x"/>
+                            <xs:element type="xs:integer" name="y"/>
+                            <xs:element type="xs:integer" name="weight"/>
+                            <xs:element type="xs:integer" name="height"/>
+                            <!--1 уровень-->
+                            <xs:element name="Point" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:integer" name="x"/>
+                                        <xs:element type="xs:integer" name="y"/>
+                                    </xs:sequence>
+                                    <xs:attribute type="xs:string" name="id"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <!--1 уровень-->
+                            <xs:element name="Square" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:integer" name="x"/>
+                                        <xs:element type="xs:integer" name="y"/>
+                                        <xs:element type="xs:integer" name="length"/>
+                                        <!--2 уровень-->
+                                        <xs:element name="Point" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:integer" name="x"/>
+                                                    <xs:element type="xs:integer" name="y"/>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="id"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <!--2 уровень-->
+                                        <xs:element name="Square" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:integer" name="x"/>
+                                                    <xs:element type="xs:integer" name="y"/>
+                                                    <xs:element type="xs:integer" name="length"/>
+                                                    <!--3 уровень-->
+                                                    <xs:element name="Point" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:integer" name="x"/>
+                                                                <xs:element type="xs:integer" name="y"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="id"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <!--3 уровень-->
+                                                    <xs:element name="Square" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:integer" name="x"/>
+                                                                <xs:element type="xs:integer" name="y"/>
+                                                                <xs:element type="xs:integer" name="length"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="id"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <!--3 уровень-->
+                                                    <xs:element name="Rectangle"  minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:integer" name="x"/>
+                                                                <xs:element type="xs:integer" name="y"/>
+                                                                <xs:element type="xs:integer" name="weight"/>
+                                                                <xs:element type="xs:integer" name="height"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="id"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="id"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <!--2 уровень-->
+                                        <xs:element name="Rectangle"  minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:integer" name="x"/>
+                                                    <xs:element type="xs:integer" name="y"/>
+                                                    <xs:element type="xs:integer" name="weight"/>
+                                                    <xs:element type="xs:integer" name="height"/>
+                                                    <!--3 уровень-->
+                                                    <xs:element name="Point" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:integer" name="x"/>
+                                                                <xs:element type="xs:integer" name="y"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="id"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <!--3 уровень-->
+                                                    <xs:element name="Square" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:integer" name="x"/>
+                                                                <xs:element type="xs:integer" name="y"/>
+                                                                <xs:element type="xs:integer" name="length"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="id"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <!--3 уровень-->
+                                                    <xs:element name="Rectangle"  minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element type="xs:integer" name="x"/>
+                                                                <xs:element type="xs:integer" name="y"/>
+                                                                <xs:element type="xs:integer" name="weight"/>
+                                                                <xs:element type="xs:integer" name="height"/>
+                                                            </xs:sequence>
+                                                            <xs:attribute type="xs:string" name="id"/>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="id"/>
+                                            </xs:complexType>
+                                        </xs:element>
+
+                                    </xs:sequence>
+                                    <xs:attribute type="xs:string" name="id"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <!--1 уровень-->
+                            <xs:element name="Rectangle"  minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:integer" name="x"/>
+                                        <xs:element type="xs:integer" name="y"/>
+                                        <xs:element type="xs:integer" name="weight"/>
+                                        <xs:element type="xs:integer" name="height"/>
+                                        <!--2 уровень-->
+                                        <xs:element name="Point" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:integer" name="x"/>
+                                                    <xs:element type="xs:integer" name="y"/>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="id"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <!--2 уровень-->
+                                        <xs:element name="Square" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:integer" name="x"/>
+                                                    <xs:element type="xs:integer" name="y"/>
+                                                    <xs:element type="xs:integer" name="length"/>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="id"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <!--2 уровень-->
+                                        <xs:element name="Rectangle"  minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element type="xs:integer" name="x"/>
+                                                    <xs:element type="xs:integer" name="y"/>
+                                                    <xs:element type="xs:integer" name="weight"/>
+                                                    <xs:element type="xs:integer" name="height"/>
+                                                </xs:sequence>
+                                                <xs:attribute type="xs:string" name="id"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute type="xs:string" name="id"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="id"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
