@@ -7,8 +7,6 @@ public class Point extends Shape {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("P(%s,%d,%d)",super.getID(),super.getX(),super.getY()));
-        return sb.toString();
+        return String.format("P(%s,%d,%d)",super.ID,super.X,super.Y);
     }
 }

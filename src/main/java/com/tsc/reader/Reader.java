@@ -3,11 +3,12 @@ package com.tsc.reader;
 import com.tsc.Shape;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface Reader {
     String getPath();
     void setPath(String p);
-    HashMap<String, Shape> readData();
+    List<Shape> readFile();
     boolean testParams();
 
 }

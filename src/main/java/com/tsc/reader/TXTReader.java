@@ -1,12 +1,17 @@
 package com.tsc.reader;
 
+import com.tsc.Point;
+import com.tsc.Rectangle;
 import com.tsc.Shape;
+import com.tsc.Square;
 
 import java.io.*;
-import java.util.HashMap;
+import java.util.*;
+
 //page 243, 256
 public class TXTReader implements Reader {
     private String path;
+
 
     public TXTReader(String path) {
         this.path = path;
@@ -23,21 +28,102 @@ public class TXTReader implements Reader {
     public boolean testParams() {
         return true;
     }
-    private HashMap<String, Shape>parseData(String inputString)
-    {
-        HashMap<String, Shape> allShapes = new HashMap<String, Shape>();
-        String con = "([A-Z])([A-Za-z]+)";
-        if (!inputString.matches(con)){
-            System.out.println("Верно");
+
+    private Shape createElementaryShape(String str) {
+        //P(P1,5,4)
+        str = str.replaceAll("\\(|\\)|\\[|\\]| ","");
+        String [] strArr=str.split(",");
+        String id = strArr[0];
+        int x = Integer.valueOf(strArr[1]);
+        int y = Integer.valueOf(strArr[2]);
+        //S(S1,5,4,3)
+        if (strArr.length == 4) {
+            int len = Integer.valueOf(strArr[3]);
+            return new Square(id, x, y, len);
+        }
+        //R(R1,5,4,3,2)
+        if (strArr.length == 5) {
+            int weight = Integer.valueOf(strArr[3]);
+            int height = Integer.valueOf(strArr[4]);
+            return new Rectangle(id, x, y, weight, height);
+        }
+        return new Point(id, x, y);
     }
 
+    private static Map<Integer, Character> getBracketsMap(String inputString) {
+        //FindAllBrackets
+        Map<Integer, Character> bracketsMap = new LinkedHashMap<>();
+        for (int i = 0; i < inputString.length(); i++) {
+            char symbol = inputString.charAt(i);
+            if (symbol == '(' || symbol == ')' || symbol == '[' || symbol == ']') {
+                bracketsMap.put(i, symbol);
+            }
+        }
+        return bracketsMap;
+    }
 
+    private List<Shape> parseString(String inputString) {
+        List<Shape> allShapes = new LinkedList<>();
+        char[] inputStringArray = inputString.toCharArray();
+        int beginStrIndex = 0;
+        char prevBracket = ' ';
+        int endStrIndex = 0;
+        boolean hasChilds = false;
+        Shape complexShape = null;
+
+        //R(R1,10,10,15,3,[S(S1,0,1,2),P(P1,6,1),R(R2,8,0,4,2,[S(S2,1,1,1)])]),R(R3,12,8,10,7,[S(S3,5,1,2)])
+        for (int iteration = 0; iteration < inputStringArray.length; iteration++) {
+            char symbol = inputStringArray[iteration];
+            if(Character.isDigit(symbol)||Character.isLetter(symbol)||symbol==',')continue;
+            if (symbol == '(' && hasChilds == false) {
+                beginStrIndex = iteration+1;
+                prevBracket = symbol;
+                continue;
+            }
+            if (symbol == ')' && hasChilds == false) {
+                endStrIndex = iteration+1;
+                String subString = inputString.substring(beginStrIndex, endStrIndex);
+                allShapes.add(createElementaryShape(subString));
+                continue;
+            }
+            if (symbol == '[' && prevBracket == '(') {
+                //(R1,1,2,3,4,[
+                hasChilds = true;
+                String subString=inputString.substring(beginStrIndex, iteration);
+                complexShape = createElementaryShape(subString);
+                beginStrIndex=iteration+2;//дальше брать символы после [
+                continue;
+            }
+            if(symbol==']' && hasChilds==true){
+                prevBracket=symbol;
+                continue;
+            }
+            if (symbol == ')' && prevBracket==']'&& hasChilds == true) {
+                hasChilds = false;
+                endStrIndex = iteration-1;
+                String subString = inputString.substring(beginStrIndex, endStrIndex);
+                List<Shape>childShapes = new LinkedList<>(parseString(subString));
+                Shape shape = complexShape;//Square || Rectangle
+                //нисходящее преобразование
+                if (shape instanceof Square) {
+//                    Square square = (Square) shape;
+//                    square.setChildShapes(childShapes);
+                    ((Square) shape).setChildShapes(childShapes);
+                }
+                if (shape instanceof Rectangle) {
+//                    Rectangle rect = (Rectangle) shape;
+//                    rect.setChildShapes(childShapes);
+                    ((Rectangle) shape).setChildShapes(childShapes);
+                }
+                allShapes.add(shape);
+                continue;
+            }
+        }
         return allShapes;
     }
 
-    public HashMap<String, Shape> readData() {
-        int lineCounter = 0;
-        HashMap<String, Shape> allShapes = new HashMap<String, Shape>();
+    public List<Shape> readFile() {
+        List<Shape> allShapes = new LinkedList<Shape>();
         StringBuilder sb = new StringBuilder();
         try (BufferedReader bufRead = new BufferedReader(new FileReader(new File(path)))) {
             String line;
@@ -47,19 +133,78 @@ public class TXTReader implements Reader {
                 sb.append(line);
             }
             //System.out.println(sb.toString());
-            String inputString=sb.toString().replaceAll("\\s\\n\\t\\r","");
-            parseData(inputString);
+            String inputString = sb.toString().replaceAll("\\s|\\n|\\t|\\r", "");
+            System.out.println(inputString);
+            allShapes = parseString(inputString);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return  allShapes;
-    }
-
-    public static void main(String[] args) {
-        TXTReader tr=new TXTReader("src/main/resources/input.txt");
-        HashMap<String,Shape>allShapes = tr.readData();
+        return allShapes;
     }
 }
+/*
+private List<Shape> parseString(String inputString) {
+        List<Shape> allShapes = new LinkedList<>();
+        StringBuilder sb= new StringBuilder();
+        Map<Integer,Character>allBrackets=getBracketsMap(inputString);
+        int position1=0;
+        char prevBracket=' ';
+        int position2=0;
+        boolean hasChilds=false;
+        //R(R1,10,10,15,3,[S(S1,0,1,2),P(P1,6,1),R(R2,8,0,4,2,[S(S2,1,1,1)])]),R(R3,12,8,10,7,[S(S3,5,1,2)])
+        Iterator<Map.Entry<Integer,Character>>iterator=allBrackets.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, Character> bracket = iterator.next();
+            if (bracket.getValue() == '(' && hasChilds == false) {
+                position1 = bracket.getKey();
+                prevBracket = bracket.getValue();
+                continue;
+            }
+            if (bracket.getValue() == ')' && hasChilds == false) {
+                position2 = bracket.getKey();
+                String subString = inputString.substring(position1, position2);
+                allShapes.add(createElementaryShape(subString));
+                continue;
+            }
+            if (bracket.getValue() == '[' && prevBracket == '(') {
+                hasChilds = true;
+                continue;
+            }
+            if (bracket.getValue() == ']' && hasChilds == true) {
+                hasChilds = false;
+                position2 = bracket.getKey();
+                String subString=inputString.substring(position1, position2);
+                List<Shape> childShapes = parseString(subString);
+
+                continue;
+            }
+            if (bracket.getValue() == ']' && prevBracket == ')') {
+                continue;
+            }
+        }
+
+
+
+//        for(int i=0;i<allBrackets.size();i++){
+//            for(int j=1;j<allBrackets.size()-1;j++){
+//                if
+//            }
+//        }
+
+//        for(Map.Entry<Integer,Character>bracket:allBrackets.entrySet()){
+//            if(bracket.getValue()=='(')
+//            {
+//                position1=bracket.getKey();
+//                continue;
+//            }
+//            if(bracket.getValue()==']'){
+//                position2=bracket.getKey();
+//            }
+//        }
+
+        return allShapes;
+    }
+* */
