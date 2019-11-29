@@ -21,6 +21,7 @@ public class ShapesActions {
 
     public void printShapesList(){
         if(shapeList.size()!=0) {
+            System.out.println("Список выделенных фигур:");
             for (Shape shape : shapeList){
                 System.out.println(shape);
             }

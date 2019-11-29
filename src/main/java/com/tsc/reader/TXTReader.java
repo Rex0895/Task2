@@ -137,7 +137,7 @@ public class TXTReader implements Reader {
             }
             //System.out.println(sb.toString());
             String inputString = sb.toString().replaceAll("\\s|\\n|\\t|\\r", "");
-            System.out.println(inputString);
+            System.out.println("Входная строка: "+inputString);
             allShapes = parseString(inputString);
 
         } catch (FileNotFoundException e) {
