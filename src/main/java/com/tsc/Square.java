@@ -20,8 +20,20 @@ public class Square extends Shape {
         childShapes = new LinkedList<Shape>(chShapes);
     }
 
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
     public void setChildShapes(List<Shape> list) {
         childShapes = new LinkedList<>(list);
+    }
+
+    public LinkedList<Shape> getChildShapes() {
+        return childShapes;
     }
 
     public void addToList(Shape shape) {

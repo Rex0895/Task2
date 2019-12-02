@@ -22,6 +22,14 @@ public class Rectangle extends Shape {
         childShapes = new LinkedList<Shape>(chShapes);
     }
 
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
     public int getWeight() {
         return weight;
     }
