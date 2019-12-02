@@ -32,7 +32,7 @@ public class Task2 {
     public static void main(String[] args) {
         Reader reader = createReader("src/main/resources/input.txt");
         List<Shape> allShapes = reader.readFile();
-        ShapesActions actions=new ShapesActions(allShapes);
+        ShapesActions actions = new ShapesActions(allShapes);
         actions.printShapesList();
 
 

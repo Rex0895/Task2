@@ -7,8 +7,8 @@ public class ShapesActions {
 
     private List<Shape> shapeList;
 
-    public ShapesActions(List<Shape>shapeList){
-        this.shapeList=new LinkedList<>(shapeList);
+    public ShapesActions(List<Shape> shapeList) {
+        this.shapeList = new LinkedList<>(shapeList);
     }
 
     public List<Shape> getShapeList() {
@@ -19,21 +19,25 @@ public class ShapesActions {
         this.shapeList = shapeList;
     }
 
-    public void printShapesList(){
-        if(shapeList.size()!=0) {
+    public void printShapesList() {
+        if (shapeList.size() != 0) {
             System.out.println("Список выделенных фигур:");
-            for (Shape shape : shapeList){
+            for (Shape shape : shapeList) {
                 System.out.println(shape);
             }
         }
     }
-    /**Функция, которая определяет, пересекаются ли две фигуры, имена которых переданы в параметрах функции*/
-    public boolean crossedShapes(String id1,String id2) {
+    /**Координаты фигур-наследников задаются относительно родительской фигуры*/
+    /** Метод, определяющий пересекаются ли две фигуры, имена которых переданы в параметрах функции*/
+    public boolean crossedShapes(String id1, String id2) {
 
         return false;
     }
-    /**Функция, возвращающая площадь пересечения многоугольников, имена которых переданы в параметрах*/
-    public int getCrossedArea(String id1,String id2) {
+
+    /**
+     * Метод, возвращающий площадь пересечения многоугольников, имена которых переданы в параметрах
+     */
+    public int getCrossedArea(String id1, String id2) {
 
         return 0;
     }

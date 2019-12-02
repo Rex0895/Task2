@@ -5,11 +5,12 @@ public class Shape {
     protected int X;
     protected int Y;
 
-    public Shape(String id,int x, int y){
-        ID=id;
-        X=x;
-        Y=y;
+    public Shape(String id, int x, int y) {
+        ID = id;
+        X = x;
+        Y = y;
     }
+
     @Override
     public String toString() {
         return super.toString();
