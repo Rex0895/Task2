@@ -33,8 +33,7 @@ public class Task2 {
         Reader reader = createReader("src/main/resources/input.txt");
         List<Shape> allShapes = reader.readFile();
         ShapesActions actions = new ShapesActions(allShapes);
-        //actions.printShapesList();
-        actions.crossedShapes("S1","P11");
-
+        actions.printShapesList();
+        actions.calculateCrossedArea("R1", "S3");
     }
 }

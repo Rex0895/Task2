@@ -65,66 +65,6 @@ public class TXTReader implements Reader {
         return bracketsMap;
     }
 
-    //    private List<Shape> parseString(String inputString) {
-//        List<Shape> allShapes = new LinkedList<>();
-//        char[] inputStringArray = inputString.toCharArray();
-//        int beginStrIndex = 0;
-//        char prevBracket = ' ';
-//        int endStrIndex = 0;
-//        boolean hasChilds = false;
-//        Shape complexShape = null;
-//
-//        //R(R1,10,10,15,3,[S(S1,0,1,2),P(P1,6,1),R(R2,8,0,4,2,[S(S2,1,1,1)])]),R(R3,12,8,10,7,[S(S3,5,1,2)])
-//        for (int iteration = 0; iteration < inputStringArray.length; iteration++) {
-//            char symbol = inputStringArray[iteration];
-//            if (Character.isDigit(symbol) || Character.isLetter(symbol) || symbol == ',') continue;
-//            if (symbol == '(' && hasChilds == false) {
-//                beginStrIndex = iteration + 1;
-//                prevBracket = symbol;
-//                continue;
-//            }
-//            if (symbol == ')' && hasChilds == false) {
-//                endStrIndex = iteration + 1;
-//                String subString = inputString.substring(beginStrIndex, endStrIndex);
-//                allShapes.add(createElementaryShape(subString));
-//                continue;
-//            }
-//            if (symbol == '[' && prevBracket == '(') {
-//                //(R1,1,2,3,4,[
-//                hasChilds = true;
-//                String subString = inputString.substring(beginStrIndex, iteration);
-//                complexShape = createElementaryShape(subString);
-//                beginStrIndex = iteration + 2;//дальше брать символы после [
-//                continue;
-//            }
-//            if (symbol == ']' && hasChilds == true) {
-//                prevBracket = symbol;
-//                continue;
-//            }
-//            if (symbol == ')' && prevBracket == ']' && hasChilds == true) {
-//                hasChilds = false;
-//                endStrIndex = iteration - 1;
-//                String subString = inputString.substring(beginStrIndex, endStrIndex);
-//                List<Shape> childShapes = new LinkedList<>(parseString(subString));
-//                Shape shape = complexShape;//Square || Rectangle
-//                //нисходящее преобразование
-//                if (shape instanceof Square) {
-////                    Square square = (Square) shape;
-////                    square.setChildShapes(childShapes);
-//                    ((Square) shape).setChildShapes(childShapes);
-//                }
-//                if (shape instanceof Rectangle) {
-////                    Rectangle rect = (Rectangle) shape;
-////                    rect.setChildShapes(childShapes);
-//                    ((Rectangle) shape).setChildShapes(childShapes);
-//                }
-//                allShapes.add(shape);
-//                continue;
-//            }
-//        }
-//        return allShapes;
-//    }
-
     private List<Shape> parseString(String inputString) // && localRoundBracket<counterRoundBracket
     {
         List<Shape> allShapes = new LinkedList<>();
