@@ -1,57 +1,25 @@
 package com.tsc;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
-public class Square extends Shape {
+class Square extends Polygon {
     private int length;
-    private LinkedList<Shape> childShapes;
 
-    public Square(String id, int x, int y, int len) {
+    Square(String id, int x, int y, int length) {
         super(id, x, y);
-        length = len;
-        childShapes = null;
-    }
-
-    public Square(String id, int x, int y, int len, ArrayList<Shape> chShapes) {
-        super(id, x, y);
-        length = len;
-        childShapes = new LinkedList<Shape>(chShapes);
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public void setLength(int length) {
         this.length = length;
     }
 
-    public void setChildShapes(List<Shape> list) {
-        childShapes = new LinkedList<>(list);
+    @Override
+    public int getSecondX() {
+        return getGlobalX() + length;
     }
 
-    public LinkedList<Shape> getChildShapes() {
-        return childShapes;
-    }
-
-    public void addToList(Shape shape) {
-        childShapes.add(shape);
+    public int getSecondY() {
+        return getGlobalY() + length;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        if (childShapes == null)
-            sb.append(String.format("S(%s,%d,%d,%d)", super.ID, super.X, super.Y, length));
-        else {
-            sb.append(String.format("S(%s,%d,%d,%d):\n", super.ID, super.X, super.Y, length));
-            for (int i = 0; i < childShapes.size(); i++)
-                if (i != childShapes.size() - 1) sb.append("\t-" + childShapes.get(i).toString() + "\n");
-                else sb.append("\t-" + childShapes.get(i).toString());
-
-        }
-        return sb.toString();
+        return "S(" + getId() + "," + getX() + "," + getY() + "," + length + ")";
     }
+
 }

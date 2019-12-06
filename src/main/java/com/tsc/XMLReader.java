@@ -1,7 +1,5 @@
-package com.tsc.reader;
+package com.tsc;
 
-import com.tsc.Point;
-import com.tsc.Shape;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -13,29 +11,24 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
-public class XMLReader implements Reader {
+class XMLReader implements Reader {
 
-    private String path;
+    private LinkedHashMap<String, Shape> shapeMap;
+    private List<Shape> shapesList;
 
-    public String getPath() {
-        return path;
+//    XMLReader() {
+//        shapeMap = null;
+//        shapesList = null;
+//    }
+
+    public Map<String, Shape> getShapesMap() {
+        return shapeMap;
     }
 
-    public void setPath(String p) {
-        path = p;
-    }
-
-    public boolean testParams() {
-        return false;
-    }
-
-
-    public XMLReader(String path) {
-        this.path = path;
+    public List<Shape> getShapesList() {
+        return shapesList;
     }
 
     private String getValue(NodeList fields, int index) {
@@ -48,6 +41,8 @@ public class XMLReader implements Reader {
     }
 
     private HashMap<String, Shape> getDataNodes(NodeList nodeList, HashMap<String, Shape> allShapes) {
+        shapeMap = new LinkedHashMap<>();
+        shapesList = new LinkedList<>();
         String out = "";
         for (int i = 0; i < nodeList.getLength(); i++) {
             if (nodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
@@ -89,16 +84,9 @@ public class XMLReader implements Reader {
         return allShapes;
     }
 
-    public List<Shape> readFile() {
-        return new LinkedList<>();
-    }
-
-
-    public HashMap<String, Shape> readData() {
-        HashMap<String, Shape> allShapes = new HashMap<String, Shape>();
+    public void readFile(File file) {
         //https://stackoverflow.com/questions/22236822/how-do-i-extract-data-from-nested-xml-using-java-dom
         try {
-            File file = new File(path);
 //            Desktop desktop = null;
 //            if (Desktop.isDesktopSupported()) {
 //                desktop = Desktop.getDesktop();
@@ -123,9 +111,6 @@ public class XMLReader implements Reader {
         } catch (SAXException e) {
             System.out.println(e.getMessage());
         }
-
-
-        return allShapes;
     }
 
 

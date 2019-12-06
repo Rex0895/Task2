@@ -1,34 +1,60 @@
 package com.tsc;
 
-public class Shape {
-    protected String ID;
-    protected int X;
-    protected int Y;
+public abstract class Shape {
+    private String id;
+    private int x;
+    private int y;
+    private Shape parrent;
 
     public Shape(String id, int x, int y) {
-        ID = id;
-        X = x;
-        Y = y;
+        this.id = id;
+        this.x = x;
+        this.y = y;
     }
 
-    public int getX() {
-        return X;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setX(int x) {
-        X = x;
-    }
-
-    public int getY() {
-        return Y;
+        this.x = x;
     }
 
     public void setY(int y) {
-        Y = y;
+        this.y = y;
     }
 
-    @Override
-    public String toString() {
-        return super.toString();
+    public String getId() {
+        return id;
     }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public Shape getParrent() {
+        return parrent;
+    }
+
+    public void setParrent(Shape parrent) {
+        this.parrent = parrent;
+    }
+
+    public int getGlobalX() {
+        if (parrent.equals(this)) return this.x;
+        else return parrent.getX() + this.x;
+    }
+
+    public int getGlobalY() {
+        if (parrent.equals(this)) return this.y;
+        else return parrent.getY() + this.y;
+    }
+
+    public abstract int getSecondX();
+
+    public abstract int getSecondY();
 }

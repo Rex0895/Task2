@@ -1,39 +1,82 @@
 package com.tsc;
 
-import com.tsc.reader.Reader;
-import com.tsc.reader.TXTReader;
-import com.tsc.reader.XMLReader;
 
+import java.io.File;
+import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Map;
 
 public class Task2 {
 
-    public static Reader createReader(String path) {
-        //Парсинг расширения файла
-        Pattern p = Pattern.compile("\\.\\w+$");
-        Matcher m = p.matcher(path);
-        m.find();
-        String extension = m.group();
-        if (extension.equals(".txt")) {
-            return new TXTReader(path);
-        } else if (extension.equals(".xml")) {
-            return new XMLReader(path);
+    private static String allShapesToString(List<Shape> shapeList, int counter) {
+        StringBuilder sb = new StringBuilder();
+        for (Shape shape : shapeList) {
+            if (counter != 0) {
+                for (int i = 0; i < counter; i++)
+                    sb.append("\t");
+            }
+            sb.append(shape + "\n");
+            if (shape instanceof Polygon) {
+                List<Shape> tmpList = ((Polygon) shape).getChildShapesList();
+                if (tmpList != null) {
+                    counter++;
+                    sb.append(allShapesToString(tmpList, counter));
+                    counter--;
+                } else continue;
+            }
+        }
+        return sb.toString();
+    }
+
+    public static void printAllShapes(List<Shape> shapeList) {
+        System.out.println("Вывод фигур в виде иерархии:\n" + allShapesToString(shapeList, 0));
+    }
+
+    public static boolean areCrossed(String id1, String id2, Map<String, Shape> shapes) {
+        //Проверяем если верхняя грань первого прямоугольника находится ниже второго,
+        // или нижняя выше верхней  грани первого.Тоже самое и для оси X.
+        Shape shape1 = shapes.get(id1);
+        Shape shape2 = shapes.get(id2);
+        //Ay1 By2 Ay2 By1 Ax2 Bx1 Ax1 Bx2
+        if (shape1.getGlobalY() > shape2.getSecondY() ||
+                shape1.getSecondY() < shape2.getGlobalY()
+                || shape1.getSecondX() < shape2.getGlobalX()
+                || shape1.getGlobalX() > shape2.getSecondX()) {
+            System.out.println("Фигуры " + id1 + " и " + id2 + " НЕ пересекаются");
+            return false;
         } else {
-            throw new NullPointerException("Неверное расширение файла:" + path);
+            System.out.println("Фигуры " + id1 + " и " + id2 + " пересекаются");
+            return true;
         }
     }
 
-    public static void readFile(Reader reader, String path) {
-        reader.readFile();
+    public static void getSquareOf2Shape(String id1, String id2, Map<String, Shape> shapes) {
+        int areaSquare = 0;
+        Shape shape1 = shapes.get(id1);
+        Shape shape2 = shapes.get(id2);
+        //Координаты внутреннего прямоугольника - будут 2 и 3 по величине
+        int[] X = {shape1.getGlobalX(), shape1.getSecondX(), shape2.getGlobalX(), shape2.getSecondX()};
+        int[] Y = {shape1.getGlobalY(), shape1.getSecondY(), shape2.getGlobalY(), shape2.getSecondY()};
+        //если пересекаются
+        if (areCrossed(id1, id2, shapes)) {
+            Arrays.sort(X);
+            Arrays.sort(Y);
+            areaSquare = (X[2] - X[1]) * (Y[2] - Y[1]);
+        }
+        System.out.println("Площадь пересечения этих фигур: " + areaSquare);
     }
 
     public static void main(String[] args) {
-        Reader reader = createReader("src/main/resources/input.txt");
-        List<Shape> allShapes = reader.readFile();
-        ShapesActions actions = new ShapesActions(allShapes);
-        actions.printShapesList();
-        actions.calculateCrossedArea("R1", "S3");
+        //  Reader reader = createReader("src/main/resources/input.txt");
+        Reader reader = new TXTReader();
+        reader.readFile(new File("src/main/resources/input.txt"));
+        List<Shape> shapesList = reader.getShapesList();
+        Map<String, Shape> shapeMap = reader.getShapesMap();
+        //Действия над фигурами
+        printAllShapes(shapesList);
+        areCrossed("S1", "S2", shapeMap);
+        getSquareOf2Shape("R1", "S1", shapeMap);
+
+
     }
 }

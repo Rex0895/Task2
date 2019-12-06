@@ -1,12 +1,21 @@
 package com.tsc;
 
-public class Point extends Shape {
-    public Point(String id, int x, int y) {
+class Point extends Shape {
+    Point(String id, int x, int y) {
         super(id, x, y);
     }
 
     @Override
+    public int getSecondX() {
+        return 0;
+    }
+
+    public int getSecondY() {
+        return 0;
+    }
+
+    @Override
     public String toString() {
-        return String.format("P(%s,%d,%d)", super.ID, super.X, super.Y);
+        return "P(" + getId() + "," + getX() + "," + getY() + ")";
     }
 }
