@@ -46,12 +46,12 @@ public abstract class Shape {
 
     public int getGlobalX() {
         if (parrent.equals(this)) return this.x;
-        else return parrent.getX() + this.x;
+        else return parrent.getGlobalX() + this.x;
     }
 
     public int getGlobalY() {
         if (parrent.equals(this)) return this.y;
-        else return parrent.getY() + this.y;
+        else return parrent.getGlobalY() + this.y;
     }
 
     public abstract int getSecondX();

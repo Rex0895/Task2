@@ -7,11 +7,11 @@ class Point extends Shape {
 
     @Override
     public int getSecondX() {
-        return 0;
+        return getGlobalX()-1;
     }
 
     public int getSecondY() {
-        return 0;
+        return getGlobalY()-1;
     }
 
     @Override

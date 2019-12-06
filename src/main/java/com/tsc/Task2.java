@@ -72,10 +72,14 @@ public class Task2 {
         reader.readFile(new File("src/main/resources/input.txt"));
         List<Shape> shapesList = reader.getShapesList();
         Map<String, Shape> shapeMap = reader.getShapesMap();
+        Shape shape1 = shapeMap.get("P1");
+        System.out.println(shape1.getId()+"("+shape1.getGlobalX()+"/"+shape1.getGlobalY()+")");
+        Shape shape2 =shapeMap.get("R4");
+        System.out.println(shape2.getId()+"("+shape2.getGlobalX()+"/"+shape2.getGlobalY()+")");
         //Действия над фигурами
         printAllShapes(shapesList);
-        areCrossed("S1", "S2", shapeMap);
-        getSquareOf2Shape("R1", "S1", shapeMap);
+        areCrossed("S1", "P1", shapeMap);
+        getSquareOf2Shape("P1", "S1", shapeMap);
 
 
     }

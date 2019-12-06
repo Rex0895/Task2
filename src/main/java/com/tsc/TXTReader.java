@@ -100,14 +100,12 @@ class TXTReader implements Reader {
                     if (localQuadrBracket == 0) {
                         endStrIndex = index - 1;
                         String subString = inputString.substring(beginStrIndex, endStrIndex);// [содержимое])
-                        parrent = complexShape;
-                        List<Shape> childShapes = new LinkedList<>(parseString(subString, parrent));
+                        List<Shape> childShapes = new LinkedList<>(parseString(subString,complexShape));
                         Shape shape = complexShape;//Square || Rectangle
                         //нисходящее преобразование
                         if (shape instanceof Polygon) {
                             ((Polygon) shape).setChildShapesList(childShapes);
                         }
-                        parrent = null;
                         shapesList.add(shape);
                     }
                     prevBracket = symbol;
